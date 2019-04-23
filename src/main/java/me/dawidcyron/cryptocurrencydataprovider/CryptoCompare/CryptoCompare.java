@@ -27,7 +27,7 @@ public class CryptoCompare {
 
   @JsonIgnore
   private final String CRYPTOCOMPARE_URL =
-      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD";
+      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,BTH,ETH,XRP,LTC,DASH,ZEC,SALT,TRON,XLM,NEO,ADA,XMR,EOS,DOGE&tsyms=USD";
 
   @JsonIgnore private final int THIRTY_SECONDS = 30000;
 
