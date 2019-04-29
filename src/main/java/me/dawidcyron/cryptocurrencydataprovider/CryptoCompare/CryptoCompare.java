@@ -41,10 +41,10 @@ public class CryptoCompare {
   // Process CryptoCompare response body and save cryptocurrency info to Redis, executing every 30 seconds.
   public void updateCryptocurrencies() {
     try {
-      StringBuffer requestBody = getCryptocurrencyJSON();
+      StringBuffer responseBody = getCryptocurrencyJSON();
       ObjectMapper mapper = new ObjectMapper();
       List<Cryptocurrency> cryptocurrencies = new ArrayList<>();
-      CryptoCompare cryptoCompare = mapper.readValue(requestBody.toString(), CryptoCompare.class);
+      CryptoCompare cryptoCompare = mapper.readValue(responseBody.toString(), CryptoCompare.class);
       for (String key : cryptoCompare.RAW.keySet()) {
         cryptocurrencies.add(cryptoCompare.RAW.get(key).get("USD"));
       }

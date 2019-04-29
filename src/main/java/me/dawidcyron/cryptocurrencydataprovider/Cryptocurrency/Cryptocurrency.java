@@ -35,4 +35,7 @@ public class Cryptocurrency {
 
   @JsonProperty("CHANGEPCTDAY")
   String changePercentageDay;
+
+  @JsonProperty("IMAGEURL")
+  String imageUrl;
 }
