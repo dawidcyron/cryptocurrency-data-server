@@ -8,6 +8,7 @@ import lombok.Data;
 import me.dawidcyron.cryptocurrencydataprovider.Cryptocurrency.Cryptocurrency;
 import me.dawidcyron.cryptocurrencydataprovider.Cryptocurrency.CryptocurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,9 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class CryptoCompare {
+
+  @Value("${CRYPTOCOMPARE_KEY:}")
+  private String apiKey;
 
   @JsonIgnore
   private final String CRYPTOCOMPARE_URL =
@@ -58,6 +62,7 @@ public class CryptoCompare {
   private StringBuffer getCryptocurrencyJSON() throws IOException {
     URL url = new URL(CRYPTOCOMPARE_URL);
     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setRequestProperty("authorization", "Apikey " + apiKey);
     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
     String inputLine;
     StringBuffer requestBody = new StringBuffer();
